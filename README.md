@@ -1,9 +1,15 @@
-﻿# Project Microsite
+﻿# Microsite Project
 
 ## Identitas
-- **Nama Lengkap:** Samie Al Fauzan
-- **NIM:** 2430511009
-- **Kelompok:** 1
+| Informasi | Keterangan |
+| :--- | :--- |
+| **Nama Lengkap** | Samie Al Fauzan |
+| **NIM** | 2430511009 |
+| **Kelompok** | 1 |
 
-## Hasil Akhir (Screenshot)
-![Tampilan Microsite](screenshot.png)
+## Screenshot
+Hasil akhir halaman publik microsite yang telah dikustomisasi.
+
+<div align="center">
+  <img src="screenshot.png" alt="Screenshot Microsite" width="100%">
+</div>
