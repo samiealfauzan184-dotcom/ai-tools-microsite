@@ -27,7 +27,7 @@
             <!-- Field 1: Judul Tautan -->
             <div class="space-y-2">
                 <label for="title" class="block text-sm font-extrabold text-slate-900">Judul Tautan <span class="text-rose-500">*</span></label>
-                <input type="text" id="title" name="title" value="{{ old('title') }}" placeholder="Contoh: Portofolio Dribbble" required
+                <input type="text" id="title" name="title" value="{{ old('title') }}" placeholder="Contoh: ChatGPT, Midjourney, dll" required
                        class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-900 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 font-medium">
                 @error('title')
                     <p class="text-xs font-bold text-rose-600 flex items-center gap-1 mt-1">
@@ -39,7 +39,7 @@
             <!-- Field 2: URL Tujuan -->
             <div class="space-y-2">
                 <label for="url" class="block text-sm font-extrabold text-slate-900">URL Tujuan <span class="text-rose-500">*</span></label>
-                <input type="url" id="url" name="url" value="{{ old('url') }}" placeholder="https://dribbble.com/username" required
+                <input type="url" id="url" name="url" value="{{ old('url') }}" placeholder="https://chat.openai.com/" required
                        class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-900 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 font-medium">
                 @error('url')
                     <p class="text-xs font-bold text-rose-600 flex items-center gap-1 mt-1">
@@ -48,7 +48,54 @@
                 @enderror
             </div>
 
-            <!-- Field 3: Custom Drag & Drop Image Preview Dropzone -->
+            <!-- Field 3: Kategori AI -->
+            <div class="space-y-2">
+                <label for="category" class="block text-sm font-extrabold text-slate-900">Kategori AI <span class="text-rose-500">*</span></label>
+                <div class="relative">
+                    <select id="category" name="category" required
+                            class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-900 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 font-medium appearance-none cursor-pointer">
+                        <option value="" disabled {{ old('category') ? '' : 'selected' }}>Pilih Kategori...</option>
+                        <option value="AI Assistant" {{ old('category') == 'AI Assistant' ? 'selected' : '' }}>🤖 AI Assistant</option>
+                        <option value="AI Agent" {{ old('category') == 'AI Agent' ? 'selected' : '' }}>🧠 AI Agent</option>
+                        <option value="AI Coding" {{ old('category') == 'AI Coding' ? 'selected' : '' }}>💻 AI Coding</option>
+                        <option value="AI Website Builder" {{ old('category') == 'AI Website Builder' ? 'selected' : '' }}>🌐 AI Website Builder</option>
+                        <option value="AI Image Generation" {{ old('category') == 'AI Image Generation' ? 'selected' : '' }}>🎨 AI Image Generation</option>
+                        <option value="AI Video Generation & Editing" {{ old('category') == 'AI Video Generation & Editing' ? 'selected' : '' }}>🎬 AI Video Generation & Editing</option>
+                        <option value="AI Audio & Music" {{ old('category') == 'AI Audio & Music' ? 'selected' : '' }}>🎵 AI Audio & Music</option>
+                        <option value="AI Writing" {{ old('category') == 'AI Writing' ? 'selected' : '' }}>📝 AI Writing</option>
+                        <option value="AI Productivity" {{ old('category') == 'AI Productivity' ? 'selected' : '' }}>📊 AI Productivity</option>
+                        <option value="AI Presentation" {{ old('category') == 'AI Presentation' ? 'selected' : '' }}>📑 AI Presentation</option>
+                        <option value="AI Search Engine" {{ old('category') == 'AI Search Engine' ? 'selected' : '' }}>🔍 AI Search Engine</option>
+                        <option value="AI Research & Learning" {{ old('category') == 'AI Research & Learning' ? 'selected' : '' }}>📚 AI Research & Learning</option>
+                        <option value="AI Automation" {{ old('category') == 'AI Automation' ? 'selected' : '' }}>⚙️ AI Automation</option>
+                        <option value="AI Design" {{ old('category') == 'AI Design' ? 'selected' : '' }}>🎭 AI Design</option>
+                        <option value="Lainnya" {{ old('category') == 'Lainnya' ? 'selected' : '' }}>✨ Lainnya</option>
+                    </select>
+                    <!-- Custom Arrow Dropdown -->
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-900">
+                        <i data-lucide="chevron-down" class="w-5 h-5 stroke-[3]"></i>
+                    </div>
+                </div>
+                @error('category')
+                    <p class="text-xs font-bold text-rose-600 flex items-center gap-1 mt-1">
+                        <i data-lucide="circle-alert" class="w-3.5 h-3.5"></i> {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Field 4: Deskripsi AI -->
+            <div class="space-y-2">
+                <label for="description" class="block text-sm font-extrabold text-slate-900">Deskripsi Singkat <span class="text-rose-500">*</span></label>
+                <textarea id="description" name="description" rows="3" placeholder="Contoh: Asisten AI serbaguna dari OpenAI." required
+                          class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-900 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 font-medium resize-y">{{ old('description') }}</textarea>
+                @error('description')
+                    <p class="text-xs font-bold text-rose-600 flex items-center gap-1 mt-1">
+                        <i data-lucide="circle-alert" class="w-3.5 h-3.5"></i> {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Field 5: Custom Drag & Drop Image Preview Dropzone -->
             <div class="space-y-3">
                 <label class="block text-sm font-extrabold text-slate-900">Ikon / Logo <span class="text-slate-400 font-medium">(Opsional)</span></label>
 
@@ -85,7 +132,7 @@
                 @enderror
             </div>
 
-            <!-- Field 4: Toggle Status Display -->
+            <!-- Field 6: Toggle Status Display -->
             <div class="pt-2">
                 <label for="is_active" class="cursor-pointer select-none">
                     <div class="flex items-center justify-between gap-4 bg-slate-50 border-2 border-slate-900 rounded-2xl p-4 shadow-[3px_3px_0px_0px_#0f172a]">

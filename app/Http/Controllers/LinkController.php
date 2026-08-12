@@ -36,9 +36,11 @@ class LinkController extends Controller
     {
         // 1. Validasi Input Server-Side
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'url'   => 'required|url|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'title'       => 'required|string|max:255',
+            'url'         => 'required|url|max:255',
+            'category'    => 'required|string|max:255',
+            'description' => 'required|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         // 2. Pemrosesan Unggah Gambar
@@ -52,11 +54,13 @@ class LinkController extends Controller
 
         // 4. Pencatatan Record Baru via Eloquent
         Link::create([
-            'title'     => $validated['title'],
-            'url'       => $validated['url'],
-            'image'     => $imagePath,
-            'is_active' => $isActive,
-            'clicks'    => 0,
+            'title'       => $validated['title'],
+            'url'         => $validated['url'],
+            'category'    => $validated['category'],
+            'description' => $validated['description'],
+            'image'       => $imagePath,
+            'is_active'   => $isActive,
+            'clicks'      => 0,
         ]);
 
         // 5. Redireksi Halaman dengan Sesi Sementara (Flash Message)
@@ -80,9 +84,11 @@ class LinkController extends Controller
     {
         // 1. Validasi Input Data
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'url'   => 'required|url|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'title'       => 'required|string|max:255',
+            'url'         => 'required|url|max:255',
+            'category'    => 'required|string|max:255',
+            'description' => 'required|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         // Default: Gunakan path gambar lama yang sudah ada di DB
@@ -101,10 +107,12 @@ class LinkController extends Controller
 
         // 3. Evaluasi Checkbox & Update Record Database
         $link->update([
-            'title'     => $validated['title'],
-            'url'       => $validated['url'],
-            'image'     => $imagePath,
-            'is_active' => $request->boolean('is_active'),
+            'title'       => $validated['title'],
+            'url'         => $validated['url'],
+            'category'    => $validated['category'],
+            'description' => $validated['description'],
+            'image'       => $imagePath,
+            'is_active'   => $request->boolean('is_active'),
         ]);
 
         return redirect()
